@@ -1,1 +1,136 @@
-<p>layout works!</p>
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span
+            class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="login">login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="client-data">clentData</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="employee-list">empList</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="employee-form">empForm</a>
+      </li>
+    </ul>
+
+  </div>
+</nav> -->
+
+<!-- Navbar -->
+<div class="parent">
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white" href="#home">
+        <i class="fas fa-chart-line"></i> DashHub
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarContent"
+        aria-controls="navbarContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink data-page="home">
+              <i class="fas fa-home"></i> Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/client-data"
+              data-page="client-data">
+              <i class="fas fa-users"></i> Clients
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/employee-list"
+              data-page="employee-list">
+              <i class="fas fa-list"></i> Employees
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/employee-form"
+              data-page="employee-form">
+              <i class="fas fa-user-plus"></i> Add Employee
+            </a>
+          </li>
+        </ul>
+
+        <div class="user-profile">
+          <div class="user-avatar" title="User Profile">U</div>
+          <span class="text-white me-5 d-none d-md-inline"
+            style="font-size: 0.9rem;">User</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Content Area -->
+<div class="content-area">
+  <!-- Home Page -->
+  <div id="home" class="page-section active">
+    <h1 class="section-title text-center mb-4">
+      <i class="fas fa-home"></i> Welcome to DashHub
+    </h1>
+    <div class="row justify-content-center g-2">
+      <div class="col-md-3">
+        <div class="card card-custom">
+          <div class="card-body text-center">
+            <i class="fas fa-users fa-3x text-primary mb-3"></i>
+            <h5 class="card-title">Total Clients</h5>
+            <p class="card-text text-muted">156 Active</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card card-custom">
+          <div class="card-body text-center">
+            <i class="fas fa-users fa-3x text-primary mb-3"></i>
+            <h5 class="card-title">Total Clients</h5>
+            <p class="card-text text-muted">156 Active</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card card-custom">
+          <div class="card-body text-center">
+            <i class="fas fa-users fa-3x text-primary mb-3"></i>
+            <h5 class="card-title">Total Clients</h5>
+            <p class="card-text text-muted">156 Active</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
