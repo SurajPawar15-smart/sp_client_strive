@@ -6,9 +6,9 @@ import { environment } from '../../../environments/environment.development';
 @Injectable({
   providedIn: 'root',
 })
-export class Client {
+export class Employee {
   constructor(private http: HttpClient) {}
-  getClients() {
-    return this.http.get(environment.API_URL + Constant.API_METHOD.CLIENT.GET_ALL);
+  getEmployee() {
+    return this.http.get(environment.API_URL + Constant.API_METHOD.EMPLOYEE.GET_ALL);
   }
 }
