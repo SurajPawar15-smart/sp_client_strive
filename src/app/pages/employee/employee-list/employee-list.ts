@@ -13,16 +13,16 @@ export class EmployeeList implements OnInit {
   employeeList: IEmployeeList[] = [];
 
   ngOnInit(): void {
+    debugger;
     this.getAllEmployees();
   }
   getAllEmployees() {
+    debugger;
     this.employeeService.getEmployee().subscribe({
       next: (result: any) => {
         this.employeeList = result.data;
       },
-      error: (err: any) => {
-        alert('Employee data error while creating');
-      },
+      error: (err: any) => {},
     });
   }
 }

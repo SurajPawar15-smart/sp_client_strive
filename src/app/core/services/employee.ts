@@ -9,6 +9,6 @@ import { environment } from '../../../environments/environment.development';
 export class Employee {
   constructor(private http: HttpClient) {}
   getEmployee() {
-    return this.http.get(environment.API_URL + Constant.API_METHOD.EMPLOYEE.GET_ALL);
+    return this.http.get(environment.API_URL + Constant.API_METHODS.EMPLOYEE.GET_ALL);
   }
 }

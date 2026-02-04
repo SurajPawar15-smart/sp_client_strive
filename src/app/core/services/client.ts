@@ -9,6 +9,6 @@ import { environment } from '../../../environments/environment.development';
 export class Client {
   constructor(private http: HttpClient) {}
   getClients() {
-    return this.http.get(environment.API_URL + Constant.API_METHOD.CLIENT.GET_ALL);
+    return this.http.get(environment.API_URL + Constant.API_METHODS.CLIENT.GET_ALL);
   }
 }
