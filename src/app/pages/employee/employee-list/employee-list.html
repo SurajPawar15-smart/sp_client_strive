@@ -34,17 +34,18 @@
   <!-- Employee Cards Grid -->
   <div class="row employees-grid g-4">
     <!-- Employee Card 1 -->
+    @for(item of employeeList; track $index){
     <div class="col-lg-3 col-md-6 col-sm-12">
       <div class="employee-card">
         <div class="card-header-section">
           <div class="employee-avatar">
             <i class="fas fa-user"></i>
           </div>
-          <span class="status-badge badge-manager">Manager</span>
+          <span class="status-badge badge-manager">{{item.role}}</span>
         </div>
 
-        <div class="employee-name">Sarah Anderson</div>
-        <div class="employee-code">CT-631</div>
+        <div class="employee-name">{{item.empName}}</div>
+        <div class="employee-code">{{item.empCode}}</div>
 
         <div class="info-section">
           <div class="info-item">
@@ -52,7 +53,7 @@
               <i class="fas fa-id-card"></i>
             </div>
             <span class="info-label">Emp ID:</span>
-            <span class="info-value">1578</span>
+            <span class="info-value">{{item.empId}}</span>
           </div>
 
           <div class="info-item">
@@ -60,7 +61,7 @@
               <i class="fas fa-envelope"></i>
             </div>
             <span class="info-label">Email:</span>
-            <span class="info-value">sarah.anderson@company.com</span>
+            <span class="info-value">{{item.empEmailId}}</span>
           </div>
 
           <div class="info-item">
@@ -68,7 +69,7 @@
               <i class="fas fa-briefcase"></i>
             </div>
             <span class="info-label">Position:</span>
-            <span class="info-value">UX Eng</span>
+            <span class="info-value">{{item.empDesignation}}</span>
           </div>
 
           <div class="info-item">
@@ -76,7 +77,7 @@
               <i class="fas fa-crown"></i>
             </div>
             <span class="info-label">Role:</span>
-            <span class="info-value">Manager</span>
+            <span class="info-value">{{item.role}}</span>
           </div>
         </div>
 
@@ -90,6 +91,7 @@
         </div>
       </div>
     </div>
+    }
 
   </div>
 </div>

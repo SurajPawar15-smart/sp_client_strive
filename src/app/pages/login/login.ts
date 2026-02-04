@@ -15,7 +15,7 @@ export class Login {
     password: '',
     username: '',
   };
-  userService = inject(User);
+  userService = inject(User); //16 _auth agurd + inteceptor as arrow fun
   router = inject(Router);
 
   onLogin() {
@@ -24,7 +24,7 @@ export class Login {
         const data = response.data.data;
         const strData = JSON.stringify(data);
         localStorage.setItem('clientStriveUser', strData);
-        this.router.navigateByUrl('/client-data');
+        this.router.navigateByUrl('/employee-list');
       },
       error: (err: any) => {
         alert('Wrong user and password');

@@ -11,10 +11,10 @@ export const routes: Routes = [
   { path: 'login', component: Login },
   {
     path: '',
-    canActivate: [authGuard],
     component: Layout,
+    //canActivate: [authGuard],
     children: [
-      { path: 'client-data', component: ClientData },
+      { path: 'client-list', component: ClientData },
       { path: 'employee-list', component: EmployeeList },
       { path: 'employee-form', component: EmployeeForm },
     ],

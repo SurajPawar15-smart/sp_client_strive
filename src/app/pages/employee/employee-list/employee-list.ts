@@ -20,7 +20,9 @@ export class EmployeeList implements OnInit {
       next: (result: any) => {
         this.employeeList = result.data;
       },
-      error: (err: any) => {},
+      error: (err: any) => {
+        alert('Employee data error while creating');
+      },
     });
   }
 }
