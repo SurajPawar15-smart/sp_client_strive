@@ -14,6 +14,13 @@ export const Constant = {
       NEW_EMPLOYEE: 'CreateNewEmployee',
       GET_EMPLOYEE_BY_ID: 'GetEmployeeByEmployeeId?id=',
     },
+    MASTER: {
+      GET_ALL_ROLES: 'GetAllRoles',
+      GET_ALL_DESIGNATION: 'GetAllDesignation',
+    },
+    PROJECT: {
+      GET_ALL_PROJECT: 'GetAllClientProjects',
+    },
   },
   VALIDATION_MESSAGE: {
     REQUIRED: 'This is Required',
