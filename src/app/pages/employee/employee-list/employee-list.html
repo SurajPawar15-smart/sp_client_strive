@@ -33,65 +33,66 @@
 
   <!-- Employee Cards Grid -->
   <div class="row employees-grid g-4">
-    <!-- Employee Card 1 -->
-    @for(item of employeeList; track $index){
-    <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="employee-card">
-        <div class="card-header-section">
-          <div class="employee-avatar">
-            <i class="fas fa-user"></i>
-          </div>
-          <span class="status-badge badge-manager">{{item.role}}</span>
-        </div>
-
-        <div class="employee-name">{{item.empName}}</div>
-        <div class="employee-code">{{item.empCode}}</div>
-
-        <div class="info-section">
-          <div class="info-item">
-            <div class="info-icon">
-              <i class="fas fa-id-card"></i>
+    <div class="row  g-4">
+      <!-- Employee Card 1 -->
+      @for(item of employeeList; track $index){
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="employee-card">
+          <div class="card-header-section">
+            <div class="employee-avatar">
+              <i class="fas fa-user"></i>
             </div>
-            <span class="info-label">Emp ID:</span>
-            <span class="info-value">{{item.empId}}</span>
+            <span class="status-badge badge-manager">{{item.role}}</span>
           </div>
 
-          <div class="info-item">
-            <div class="info-icon">
-              <i class="fas fa-envelope"></i>
+          <div class="employee-name">{{item.empName}}</div>
+          <div class="employee-code">{{item.empCode}}</div>
+
+          <div class="info-section">
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="fas fa-id-card"></i>
+              </div>
+              <span class="info-label">Emp ID:</span>
+              <span class="info-value">{{item.empId}}</span>
             </div>
-            <span class="info-label">Email:</span>
-            <span class="info-value">{{item.empEmailId}}</span>
-          </div>
 
-          <div class="info-item">
-            <div class="info-icon">
-              <i class="fas fa-briefcase"></i>
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <span class="info-label">Email:</span>
+              <span class="info-value">{{item.empEmailId}}</span>
             </div>
-            <span class="info-label">Position:</span>
-            <span class="info-value">{{item.empDesignation}}</span>
-          </div>
 
-          <div class="info-item">
-            <div class="info-icon">
-              <i class="fas fa-crown"></i>
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="fas fa-briefcase"></i>
+              </div>
+              <span class="info-label">Position:</span>
+              <span class="info-value">{{item.empDesignation}}</span>
             </div>
-            <span class="info-label">Role:</span>
-            <span class="info-value">{{item.role}}</span>
-          </div>
-        </div>
 
-        <div class="action-buttons">
-          <a href="#edit" class="btn-action btn-edit">
-            <i class="fas fa-edit"></i> Edit
-          </a>
-          <a href="#delete" class="btn-action btn-delete">
-            <i class="fas fa-trash"></i> Delete
-          </a>
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="fas fa-crown"></i>
+              </div>
+              <span class="info-label">Role:</span>
+              <span class="info-value">{{item.role}}</span>
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <a href="#edit" class="btn-action btn-edit">
+              <i class="fas fa-edit"></i> Edit
+            </a>
+            <a href="#delete" class="btn-action btn-delete">
+              <i class="fas fa-trash"></i> Delete
+            </a>
+          </div>
         </div>
       </div>
+      }
     </div>
-    }
-
   </div>
 </div>

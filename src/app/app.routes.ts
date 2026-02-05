@@ -4,7 +4,7 @@ import { Login } from './pages/login/login';
 import { ClientData } from './pages/client/client-data/client-data';
 import { EmployeeList } from './pages/employee/employee-list/employee-list';
 import { EmployeeForm } from './pages/employee/employee-form/employee-form';
-import { authGuard } from './core/guards/auth-guard';
+//import { authGuard } from './core/guards/auth-guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -12,11 +12,10 @@ export const routes: Routes = [
   {
     path: '',
     component: Layout,
-    //canActivate: [authGuard],
     children: [
       { path: 'client-list', component: ClientData },
       { path: 'employee-list', component: EmployeeList },
-      { path: 'employee-form', component: EmployeeForm },
+      { path: 'employee-form/:id', component: EmployeeForm },
     ],
   },
 ];

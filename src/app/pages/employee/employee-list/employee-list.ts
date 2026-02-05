@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Employee } from '../../../core/services/employee';
 import { IEmployeeList } from '../../../core/models/interface/employee.model';
 
@@ -11,6 +11,7 @@ import { IEmployeeList } from '../../../core/models/interface/employee.model';
 export class EmployeeList implements OnInit {
   employeeService = inject(Employee);
   employeeList: IEmployeeList[] = [];
+  isLoader = signal<boolean>(true);
 
   ngOnInit(): void {
     debugger;
@@ -21,6 +22,7 @@ export class EmployeeList implements OnInit {
     this.employeeService.getEmployee().subscribe({
       next: (result: any) => {
         this.employeeList = result.data;
+        this.isLoader.set(false);
       },
       error: (err: any) => {},
     });
