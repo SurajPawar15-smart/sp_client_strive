@@ -15,6 +15,7 @@ export const routes: Routes = [
     children: [
       { path: 'client-list', component: ClientData },
       { path: 'employee-list', component: EmployeeList },
+      { path: 'employee-form', component: EmployeeForm },
       { path: 'employee-form/:id', component: EmployeeForm },
     ],
   },
