@@ -2,7 +2,7 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { EmployeeModel } from '../../../core/models/class/employee.model';
 import { Employee } from '../../../core/services/employee';
 import { Master } from '../../../core/services/master';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AsyncPipe, JsonPipe, NgIf } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { ApiResponseModel } from '../../../core/models/interface/api.mode';
 
 @Component({
   selector: 'app-employee-form',
-  imports: [FormsModule, AsyncPipe, JsonPipe, NgIf],
+  imports: [FormsModule, RouterLink, AsyncPipe, JsonPipe],
   templateUrl: './employee-form.html',
   styleUrl: './employee-form.css',
 })
@@ -20,47 +20,25 @@ export class EmployeeForm implements OnInit, OnDestroy {
   masterService = inject(Master);
   activatedRoute = inject(ActivatedRoute);
 
-  //roleList: any[]=[];
+  roleList: any[] = [];
+  designationList: any[] = [];
 
   subscriptionArray: Subscription[] = [];
 
-  roleList$: Observable<any> = new Observable<any>();
-  designationList$: Observable<any> = new Observable<any>();
-  currentEmpId: number = 0;
-
   constructor() {}
-
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((res: any) => {
-      debugger;
-      this.currentEmpId = res.id;
-      this.getEMployeeById();
+    this.getAllRoles();
+  }
+
+  getAllRoles() {
+    const roles = this.masterService.getRoles().subscribe({
+      next: (res: any) => {
+        this.roleList = res.data;
+      },
     });
-    this.roleList$ = this.masterService.getRoles();
-    this.designationList$ = this.masterService.getDesignations();
-    //this.getAllRoles();
+    this.subscriptionArray.push(roles);
   }
 
-  getEMployeeById() {
-    debugger;
-    if (this.currentEmpId != 0) {
-      this.employeeService.getEmployeeById(this.currentEmpId).subscribe({
-        next: (res: ApiResponseModel) => {
-          debugger;
-          this.employeeObj = res.data;
-        },
-      });
-    }
-  }
-  // getAllRoles() {
-  //   const roles =  this.masterService.getRoles().subscribe({
-  //     next:(res:any)=>{
-  //       this.roleList = res.data;
-  //     }
-  //   });
-
-  //   this.subscriptionArray.push(roles)
-  // }
   onSave() {
     debugger;
     this.subscriptionArray.push(
