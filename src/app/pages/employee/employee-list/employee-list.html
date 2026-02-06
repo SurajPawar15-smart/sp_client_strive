@@ -87,7 +87,8 @@
           </div>
 
           <div class="action-buttons">
-            <a href="#edit" class="btn-action btn-edit">
+            <a [routerLink]="'/employee-form/'+item.empId"
+              class="btn-action btn-edit">
               <i class="fas fa-edit"></i> Edit
             </a>
             <a href="#delete" class="btn-action btn-delete">
