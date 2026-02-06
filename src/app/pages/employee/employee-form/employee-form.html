@@ -313,10 +313,17 @@
 
           <!-- Submit Buttons -->
           <div class="text-center mt-5">
+            @if (currentEmpId == 0) {
             <button type="button" (click)="onSave()"
               class="btn btn-primary p-3">
               <i class="fas fa-save"></i> Create Employee
             </button>
+            } @else {
+            <button type="button" (click)="onSave()"
+              class="btn btn-warning p-3">
+              <i class="fas fa-save"></i> Update Employee
+            </button>
+            }
             <button type="reset" class="btn btn-reset">
               <i class="fas fa-redo"></i> Reset Form
             </button>

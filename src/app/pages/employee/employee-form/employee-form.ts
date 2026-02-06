@@ -29,10 +29,39 @@ export class EmployeeForm implements OnInit, OnDestroy {
   designationList$: Observable<any> = new Observable<any>();
   currentEmpId: number = 0;
 
-  constructor() {}
+  constructor() {
+    // this.activatedRoute.params.subscribe((res: any) => {
+    //   debugger;
+    //   this.currentEmpId = res.id;
+    //   this.getEmployeeById();
+    // })
+  }
   ngOnInit(): void {
+    // this.activatedRoute.params.subscribe((res: any) => {
+    //   debugger;
+    //   this.currentEmpId = res.id;
+    //   this.getEmployeeById();
+    // })
+    this.activatedRoute.params.subscribe((res: any) => {
+      this.currentEmpId = +res['id'] || 0;
+
+      if (this.currentEmpId > 0) {
+        this.getEmployeeById();
+      }
+    });
     this.roleList$ = this.masterService.getRoles();
     this.designationList$ = this.masterService.getDesignations();
+  }
+  getEmployeeById() {
+    debugger;
+    if (this.currentEmpId != 0) {
+      this.employeeService.getEmployeeById(this.currentEmpId).subscribe({
+        next: (res: ApiResponseModel) => {
+          debugger;
+          this.employeeObj = res.data;
+        },
+      });
+    }
   }
 
   // getAllRoles() {
@@ -46,6 +75,7 @@ export class EmployeeForm implements OnInit, OnDestroy {
 
   onSave() {
     debugger;
+    console.log('Payload sending to API:', this.employeeObj);
     this.subscriptionArray.push(
       this.employeeService.createNewEmployee(this.employeeObj).subscribe({
         next: (response: ApiResponseModel) => {
