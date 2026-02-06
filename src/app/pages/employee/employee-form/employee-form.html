@@ -43,17 +43,32 @@
               </div>
             </div>
             <div class="col-md-4">
-              <label for="roleId" class="form-label">Role <span
+              <!-- <label for="roleId" class="form-label">Role <span
                   class="required">*</span></label>
-
               <select class="form-select" [(ngModel)]="employeeObj.roleId"
                 id="roleId" name="roleId" required>
-                <!-- <option value>Select Role</option> -->
                 @for(item of roleList;track $index){
                 <option [value]="item.roleId">{{item.role}}</option>
                 }
-                <!-- --{{roleList | async | json}} -->
               </select>
+              --{{roleList$ | async | json}} -->
+
+              <label for="roleId" class="form-label">Role <span
+                  class="required">*</span></label>
+
+              <div *ngIf="roleList$ | async as roleData">
+
+                <select class="form-select" id="roleId"
+                  [(ngModel)]="employeeObj.roleId" name="roleId"
+                  required>
+                  <!-- <option value>Select Role</option> -->
+                  @for (item of roleData.data; track $index) {
+                  <option [value]="item.roleId">{{item.role}}</option>
+                  }
+                </select>
+              </div>
+
+              <!-- --{{roleList$ | async | json}} -->
 
             </div>
           </div>
@@ -81,17 +96,17 @@
                   name="empId" id="empId"
                 name="empId" required>
             </div> -->
-            <!-- <div class="col-md-6">
+            <div class="col-md-6">
               <label for="empName" class="form-label">Full Name <span
                   class="required">*</span></label>
               <div class="input-group">
                 <span class="input-group-text"><i
                     class="fas fa-user-circle"></i></span>
-                <input type="text" [(ngModel)]="employeeObj.userName"
-                  name="userName" id="empName"
+                <input type="text" [(ngModel)]="employeeObj.empName"
+                  name="empName" id="empName" class="form-control"
                   name="empName" required>
               </div>
-            </div> -->
+            </div>
             <div class="col-md-6">
               <label for="empEmailId" class="form-label">Company Email <span
                   class="required">*</span></label>
@@ -105,204 +120,208 @@
                   required>
               </div>
             </div>
+
             <div class="col-md-6">
               <label for="empDesignationId" class="form-label">Designation
                 <span class="required">*</span></label>
+              <!-- --{{designationList$ | async|json}} -->
               <select class="form-select"
                 [(ngModel)]="employeeObj.empDesignationId" id="empDesignationId"
                 name="empDesignationId" required>
-                @for(item of designationList;track $index){
+                @for(item of designationList$ | async; track $index){
                 <option
                   [value]="item.designationId">{{item.designation}}</option>
                 }
               </select>
             </div>
-          </div>
-        </div>
 
-        <!-- Contact Information Section -->
-        <div class="form-section">
-          <div class="section-title">
-            <i class="fas fa-phone"></i>
-            Contact Information
           </div>
-          <div class="row g-4">
-            <div class="col-md-4">
-              <label for="empContactNo" class="form-label">Primary Contact
-                <span class="required">*</span></label>
-              <div class="input-group">
-                <span class="input-group-text"><i
-                    class="fas fa-mobile-alt"></i></span>
-                <input type="tel" [(ngModel)]="employeeObj.empContactNo"
-                  class="form-control"
-                  name="empContactNo" id="empContactNo"
-                  name="empContactNo" placeholder="+1 234 567 8900" required>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <label for="empAltContactNo" class="form-label">Alternate
-                Contact</label>
-              <div class="input-group">
-                <span class="input-group-text"><i
-                    class="fas fa-phone"></i></span>
-                <input type="tel" [(ngModel)]="employeeObj.empAltContactNo"
-                  class="form-control"
-                  name="empAltContactNo" id="empAltContactNo"
-                  name="empAltContactNo" placeholder="+1 234 567 8901">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <label for="empPersonalEmailId" class="form-label">Personal
-                Email</label>
-              <div class="input-group">
-                <span class="input-group-text"><i
-                    class="fas fa-at"></i></span>
-                <input type="email" [(ngModel)]="employeeObj.empPersonalEmailId"
-                  class="form-control"
-                  name="empPersonalEmailId"
-                  id="empPersonalEmailId" name="empPersonalEmailId"
-                  placeholder="personal@email.com">
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- Experience Information Section -->
-        <div class="form-section">
-          <div class="section-title">
-            <i class="fas fa-briefcase"></i>
-            Experience Information
-          </div>
-          <div class="row g-4">
-            <div class="col-md-6">
-              <label for="empExpTotalYear" class="form-label">Total Years of
-                Experience</label>
-              <div class="input-group">
-                <span class="input-group-text"><i
-                    class="fas fa-calendar-alt"></i></span>
-                <input type="number" [(ngModel)]="employeeObj.empExpTotalYear"
-                  class="form-control"
-                  name="empExpTotalYear" id="empExpTotalYear"
-                  name="empExpTotalYear" min="0" max="50" placeholder="0">
-                <span class="input-group-text">Years</span>
-              </div>
+          <!-- Contact Information Section -->
+          <div class="form-section">
+            <div class="section-title">
+              <i class="fas fa-phone"></i>
+              Contact Information
             </div>
-            <div class="col-md-6">
-              <label for="empExpTotalMonth" class="form-label">Additional
-                Months</label>
-              <div class="input-group">
-                <span class="input-group-text"><i
-                    class="fas fa-calendar"></i></span>
-                <input type="number" [(ngModel)]="employeeObj.empExpTotalMonth"
-                  class="form-control"
-                  name="empExpTotalMonth"
-                  id="empExpTotalMonth" name="empExpTotalMonth" min="0"
-                  max="11" placeholder="0">
-                <span class="input-group-text">Months</span>
+            <div class="row g-4">
+              <div class="col-md-4">
+                <label for="empContactNo" class="form-label">Primary Contact
+                  <span class="required">*</span></label>
+                <div class="input-group">
+                  <span class="input-group-text"><i
+                      class="fas fa-mobile-alt"></i></span>
+                  <input type="tel" [(ngModel)]="employeeObj.empContactNo"
+                    class="form-control"
+                    name="empContactNo" id="empContactNo"
+                    name="empContactNo" placeholder="+1 234 567 8900" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label for="empAltContactNo" class="form-label">Alternate
+                  Contact</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i
+                      class="fas fa-phone"></i></span>
+                  <input type="tel" [(ngModel)]="employeeObj.empAltContactNo"
+                    class="form-control"
+                    name="empAltContactNo" id="empAltContactNo"
+                    name="empAltContactNo" placeholder="+1 234 567 8901">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label for="empPersonalEmailId" class="form-label">Personal
+                  Email</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i
+                      class="fas fa-at"></i></span>
+                  <input type="email"
+                    [(ngModel)]="employeeObj.empPersonalEmailId"
+                    class="form-control"
+                    name="empPersonalEmailId"
+                    id="empPersonalEmailId" name="empPersonalEmailId"
+                    placeholder="personal@email.com">
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Current Address Section -->
-        <div class="form-section">
-          <div class="section-title">
-            <i class="fas fa-map-marker-alt"></i>
-            Current Address
-          </div>
-          <div class="row g-4">
-            <div class="col-12">
-              <label for="empAddress" class="form-label">Street Address <span
-                  class="required">*</span></label>
-              <textarea [(ngModel)]="employeeObj.empAddress"
-                class="form-control"
-                name="empAddress" id="empAddress" name="empAddress"
-                rows="3" placeholder="House No., Street, Area"
-                required></textarea>
+          <!-- Experience Information Section -->
+          <div class="form-section">
+            <div class="section-title">
+              <i class="fas fa-briefcase"></i>
+              Experience Information
             </div>
-            <div class="col-md-4">
-              <label for="empCity" class="form-label">City <span
-                  class="required">*</span></label>
-              <input type="text" [(ngModel)]="employeeObj.empCity"
-                class="form-control"
-                name="empCity" id="empCity"
-                name="empCity" required>
-            </div>
-            <div class="col-md-4">
-              <label for="empState" class="form-label">State <span
-                  class="required">*</span></label>
-              <input type="text" [(ngModel)]="employeeObj.empState"
-                class="form-control"
-                name="empState" id="empState"
-                name="empState" required>
-            </div>
-            <div class="col-md-4">
-              <label for="empPinCode" class="form-label">PIN Code <span
-                  class="required">*</span></label>
-              <input type="text" [(ngModel)]="employeeObj.empPinCode"
-                class="form-control"
-                name="empPinCode" id="empPinCode"
-                name="empPinCode" pattern="[0-9]{5,6}" placeholder="000000"
-                required>
+            <div class="row g-4">
+              <div class="col-md-6">
+                <label for="empExpTotalYear" class="form-label">Total Years of
+                  Experience</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i
+                      class="fas fa-calendar-alt"></i></span>
+                  <input type="number" [(ngModel)]="employeeObj.empExpTotalYear"
+                    class="form-control"
+                    name="empExpTotalYear" id="empExpTotalYear"
+                    name="empExpTotalYear" min="0" max="50" placeholder="0">
+                  <span class="input-group-text">Years</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="empExpTotalMonth" class="form-label">Additional
+                  Months</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i
+                      class="fas fa-calendar"></i></span>
+                  <input type="number"
+                    [(ngModel)]="employeeObj.empExpTotalMonth"
+                    class="form-control"
+                    name="empExpTotalMonth"
+                    id="empExpTotalMonth" name="empExpTotalMonth" min="0"
+                    max="11" placeholder="0">
+                  <span class="input-group-text">Months</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Permanent Address Section -->
-        <div class="form-section">
-          <div class="section-title">
-            <i class="fas fa-home"></i>
-            Permanent Address
+          <!-- Current Address Section -->
+          <div class="form-section">
+            <div class="section-title">
+              <i class="fas fa-map-marker-alt"></i>
+              Current Address
+            </div>
+            <div class="row g-4">
+              <div class="col-12">
+                <label for="empAddress" class="form-label">Street Address <span
+                    class="required">*</span></label>
+                <textarea [(ngModel)]="employeeObj.empAddress"
+                  class="form-control"
+                  name="empAddress" id="empAddress" name="empAddress"
+                  rows="3" placeholder="House No., Street, Area"
+                  required></textarea>
+              </div>
+              <div class="col-md-4">
+                <label for="empCity" class="form-label">City <span
+                    class="required">*</span></label>
+                <input type="text" [(ngModel)]="employeeObj.empCity"
+                  class="form-control"
+                  name="empCity" id="empCity"
+                  name="empCity" required>
+              </div>
+              <div class="col-md-4">
+                <label for="empState" class="form-label">State <span
+                    class="required">*</span></label>
+                <input type="text" [(ngModel)]="employeeObj.empState"
+                  class="form-control"
+                  name="empState" id="empState"
+                  name="empState" required>
+              </div>
+              <div class="col-md-4">
+                <label for="empPinCode" class="form-label">PIN Code <span
+                    class="required">*</span></label>
+                <input type="text" [(ngModel)]="employeeObj.empPinCode"
+                  class="form-control"
+                  name="empPinCode" id="empPinCode"
+                  name="empPinCode" pattern="[0-9]{5,6}" placeholder="000000"
+                  required>
+              </div>
+            </div>
           </div>
-          <div class="row g-4">
-            <div class="col-12">
-              <label for="empPerAddress" class="form-label">Street Address
-                <span class="required">*</span></label>
-              <textarea [(ngModel)]="employeeObj.empPerAddress"
-                class="form-control"
-                name="empPerAddress" id="empPerAddress"
-                name="empPerAddress" rows="3"
-                placeholder="House No., Street, Area" required></textarea>
+
+          <!-- Permanent Address Section -->
+          <div class="form-section">
+            <div class="section-title">
+              <i class="fas fa-home"></i>
+              Permanent Address
             </div>
-            <div class="col-md-4">
-              <label for="empPerCity" class="form-label">City <span
-                  class="required">*</span></label>
-              <input type="text" [(ngModel)]="employeeObj.empPerCity"
-                class="form-control"
-                name="empPerCity" id="empPerCity"
-                name="empPerCity" required>
-            </div>
-            <div class="col-md-4">
-              <label for="empPerState" class="form-label">State <span
-                  class="required">*</span></label>
-              <input type="text" [(ngModel)]="employeeObj.empPerState"
-                class="form-control"
-                name="empPerState" id="empPerState"
-                name="empPerState" required>
-            </div>
-            <div class="col-md-4">
-              <label for="empPerPinCode" class="form-label">PIN Code <span
-                  class="required">*</span></label>
-              <input type="text" [(ngModel)]="employeeObj.empPerPinCode"
-                class="form-control"
-                name="empPerPinCode" id="empPerPinCode"
-                name="empPerPinCode" pattern="[0-9]{5,6}" placeholder="000000"
-                required>
+            <div class="row g-4">
+              <div class="col-12">
+                <label for="empPerAddress" class="form-label">Street Address
+                  <span class="required">*</span></label>
+                <textarea [(ngModel)]="employeeObj.empPerAddress"
+                  class="form-control"
+                  name="empPerAddress" id="empPerAddress"
+                  name="empPerAddress" rows="3"
+                  placeholder="House No., Street, Area" required></textarea>
+              </div>
+              <div class="col-md-4">
+                <label for="empPerCity" class="form-label">City <span
+                    class="required">*</span></label>
+                <input type="text" [(ngModel)]="employeeObj.empPerCity"
+                  class="form-control"
+                  name="empPerCity" id="empPerCity"
+                  name="empPerCity" required>
+              </div>
+              <div class="col-md-4">
+                <label for="empPerState" class="form-label">State <span
+                    class="required">*</span></label>
+                <input type="text" [(ngModel)]="employeeObj.empPerState"
+                  class="form-control"
+                  name="empPerState" id="empPerState"
+                  name="empPerState" required>
+              </div>
+              <div class="col-md-4">
+                <label for="empPerPinCode" class="form-label">PIN Code <span
+                    class="required">*</span></label>
+                <input type="text" [(ngModel)]="employeeObj.empPerPinCode"
+                  class="form-control"
+                  name="empPerPinCode" id="empPerPinCode"
+                  name="empPerPinCode" pattern="[0-9]{5,6}" placeholder="000000"
+                  required>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Submit Buttons -->
-        <div class="text-center mt-5">
-          <button type="button" (click)="onSave()"
-            class="btn btn-primary p-3">
-            <i class="fas fa-save"></i> Create Employee
-          </button>
-          <button type="reset" class="btn btn-reset">
-            <i class="fas fa-redo"></i> Reset Form
-          </button>
-        </div>
+          <!-- Submit Buttons -->
+          <div class="text-center mt-5">
+            <button type="button" (click)="onSave()"
+              class="btn btn-primary p-3">
+              <i class="fas fa-save"></i> Create Employee
+            </button>
+            <button type="reset" class="btn btn-reset">
+              <i class="fas fa-redo"></i> Reset Form
+            </button>
+          </div>
 
+        </div>
       </div>
-    </div>
-  </div></div>
+    </div></div>

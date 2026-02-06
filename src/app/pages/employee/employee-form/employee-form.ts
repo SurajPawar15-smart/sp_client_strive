@@ -4,13 +4,13 @@ import { Employee } from '../../../core/services/employee';
 import { Master } from '../../../core/services/master';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { AsyncPipe, JsonPipe, NgIf } from '@angular/common';
+import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
 import { ApiResponseModel } from '../../../core/models/interface/api.mode';
 
 @Component({
   selector: 'app-employee-form',
-  imports: [FormsModule, RouterLink, AsyncPipe, JsonPipe],
+  imports: [FormsModule, RouterLink, AsyncPipe, JsonPipe, NgIf, NgFor],
   templateUrl: './employee-form.html',
   styleUrl: './employee-form.css',
 })
@@ -25,19 +25,24 @@ export class EmployeeForm implements OnInit, OnDestroy {
 
   subscriptionArray: Subscription[] = [];
 
+  roleList$: Observable<any> = new Observable<any>();
+  designationList$: Observable<any> = new Observable<any>();
+  currentEmpId: number = 0;
+
   constructor() {}
   ngOnInit(): void {
-    this.getAllRoles();
+    this.roleList$ = this.masterService.getRoles();
+    this.designationList$ = this.masterService.getDesignations();
   }
 
-  getAllRoles() {
-    const roles = this.masterService.getRoles().subscribe({
-      next: (res: any) => {
-        this.roleList = res.data;
-      },
-    });
-    this.subscriptionArray.push(roles);
-  }
+  // getAllRoles() {
+  //   const roles = this.masterService.getRoles().subscribe({
+  //     next: (res: any) => {
+  //       this.roleList = res.data;
+  //     },
+  //   });
+  //   this.subscriptionArray.push(roles);
+  // }
 
   onSave() {
     debugger;
